@@ -1,0 +1,14 @@
+name: NoRain
+main: me.ellbristow.norain.NoRain
+version: 1.1.0
+author: ellbristow
+description: >
+             Turn of rain... simples!
+commands:
+  norain:
+    description: NoRain main toggle command
+    permission: norain.use
+permissions:
+  norain.use:
+    description: Access to /norain command
+    default: ops
