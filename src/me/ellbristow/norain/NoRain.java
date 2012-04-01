@@ -75,6 +75,10 @@ public class NoRain extends JavaPlugin implements Listener {
                         sender.sendMessage(ChatColor.RED + "World " + ChatColor.WHITE + world + ChatColor.RED + " could not be found!");
                         return false;
                     }
+                    if (!getServer().getWorld(world).getEnvironment().equals(Environment.NORMAL)) {
+                        sender.sendMessage(ChatColor.RED + "You can only check rain status in normal worlds!");
+                        return false;
+                    }
                     boolean setting = rainWorlds.get(world);
                     if (setting) {
                         sender.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.RED + "DISABLED" + ChatColor.GOLD + " in the current world!");
@@ -85,6 +89,10 @@ public class NoRain extends JavaPlugin implements Listener {
                     String world = args[0];
                     if (getServer().getWorld(world) == null) {
                         sender.sendMessage(ChatColor.RED + "World " + ChatColor.WHITE + world + ChatColor.RED + " could not be found!");
+                        return false;
+                    }
+                    if (!getServer().getWorld(world).getEnvironment().equals(Environment.NORMAL)) {
+                        sender.sendMessage(ChatColor.RED + "You can only set rain status in normal worlds!");
                         return false;
                     }
                     if (!args[1].equalsIgnoreCase("on") && !args[1].equalsIgnoreCase("off")) {
