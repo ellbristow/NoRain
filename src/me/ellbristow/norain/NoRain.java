@@ -44,12 +44,14 @@ public class NoRain extends JavaPlugin implements Listener {
     @EventHandler (priority = EventPriority.NORMAL)
     public void onRainStart(WeatherChangeEvent event) {
         if (!event.isCancelled()) {
-            if (event.toWeatherState()) {
+            boolean setting = rainWorlds.get(event.getWorld().getName());
+            if (event.toWeatherState() && rainWorlds.get(event.getWorld().getName())) {
                 event.setCancelled(true);
             }
         }
     }
     
+    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (commandLabel.equalsIgnoreCase("norain")) {
             if (!sender.hasPermission("norain.use")) {
@@ -102,10 +104,15 @@ public class NoRain extends JavaPlugin implements Listener {
                     }
                     if (args[1].equalsIgnoreCase("on")) {
                         rainWorlds.put(world, true);
+                        config.set(world, true);
+                        saveConfig();
                         sender.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.RED + "DISABLED" + ChatColor.GOLD + " in the current world!");
+                        getServer().getWorld(world).setWeatherDuration(1);
                         return true;
                     } else {
-                        rainWorlds.put(world, true);
+                        rainWorlds.put(world, false);
+                        config.set(world, false);
+                        saveConfig();
                         sender.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.GREEN + "ENABLED" + ChatColor.GOLD + " in the current world!");
                         return true;
                     }
