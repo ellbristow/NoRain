@@ -67,9 +67,9 @@ public class NoRain extends JavaPlugin implements Listener {
                     String world = player.getWorld().getName();
                     boolean setting = rainWorlds.get(world);
                     if (setting) {
-                        player.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.RED + "DISABLED" + ChatColor.GOLD + " in the current world!");
+                        player.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.RED + "DISABLED" + ChatColor.GOLD + " in " + world);
                     } else {
-                        player.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.GREEN + "ENABLED" + ChatColor.GOLD + " in the current world!");
+                        player.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.GREEN + "ENABLED" + ChatColor.GOLD + " in " + world);
                     }
                 } else if (args.length == 1) {
                     String world = args[0];
@@ -83,9 +83,9 @@ public class NoRain extends JavaPlugin implements Listener {
                     }
                     boolean setting = rainWorlds.get(world);
                     if (setting) {
-                        sender.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.RED + "DISABLED" + ChatColor.GOLD + " in the current world!");
+                        sender.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.RED + "DISABLED" + ChatColor.GOLD + " in " + world);
                     } else {
-                        sender.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.GREEN + "ENABLED" + ChatColor.GOLD + " in the current world!");
+                        sender.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.GREEN + "ENABLED" + ChatColor.GOLD + " in " + world);
                     }
                 } else if (args.length == 2) {
                     String world = args[0];
@@ -106,14 +106,15 @@ public class NoRain extends JavaPlugin implements Listener {
                         rainWorlds.put(world, true);
                         config.set(world, true);
                         saveConfig();
-                        sender.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.RED + "DISABLED" + ChatColor.GOLD + " in the current world!");
+                        sender.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.RED + "DISABLED" + ChatColor.GOLD + " in " + world);
                         getServer().getWorld(world).setWeatherDuration(1);
                         return true;
                     } else {
                         rainWorlds.put(world, false);
                         config.set(world, false);
                         saveConfig();
-                        sender.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.GREEN + "ENABLED" + ChatColor.GOLD + " in the current world!");
+                        sender.sendMessage(ChatColor.GOLD + "Rain is " + ChatColor.GREEN + "ENABLED" + ChatColor.GOLD + " in " + world);
+
                         return true;
                     }
                 }
